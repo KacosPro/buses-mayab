@@ -2,14 +2,18 @@
 <div class="row">
 	<div class="col-md-6 col-md-offset-3">
 		<?php
-		echo $this->TWBForm->create($route, ['url' => ['action' => 'login']]);
-		echo $this->TWBForm->label('sourceRoutes');
-		echo $this->TWBForm->select('sourceRoutes', $sourceRoutes);
+		echo $this->TWBForm->create($route, ['url' => ['action' => 'schedule']]);
+		echo $this->TWBForm->label('sourceRoute');
+		echo $this->TWBForm->select('sourceRoute', $sourceRoutes, ['required' => 'required']);
 		echo '<br>';
-		echo $this->TWBForm->label('destinationRoutes');
-		echo $this->TWBForm->select('destinationRoutes', $destinationRoutes);
+		echo $this->TWBForm->label('destinationRoute');
+		echo $this->TWBForm->select('destinationRoute', $destinationRoutes, ['required' => 'required']);
 		echo '<br>';
-		echo $this->TWBForm->input('date');
+		echo $this->TWBForm->input('date', [
+			'required' => 'required',
+			'autocomplete' => 'off',
+			'readonly' => 'readonly'
+		]);
 		echo '<br>';
 		echo $this->TWBForm->submit(__('Send'), ['class' => 'btn-primary btn-lg']);
 		echo $this->TWBForm->end();
@@ -22,7 +26,7 @@
 			minDate: 0,
 			maxDate: '+1M +10D',
 			numberOfMonths: 2,
-			dateFormat: 'DD, d MM'
+			dateFormat: 'yy-mm-dd'
 		});
 	});",
 	['block' => true]

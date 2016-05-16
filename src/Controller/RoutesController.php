@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\ORM\TableRegistry;
 
 /**
  * Routes Controller
@@ -90,5 +91,124 @@ class RoutesController extends AppController
 		]);
 
 		$this->set(compact('route', 'sourceRoutes', 'destinationRoutes'));
+	}
+
+	public function schedule()
+	{
+		if (!$this->request->is('post')) {
+			return $this->redirect(['action' => 'select']);
+		}
+
+		if (empty($this->request->data)) {
+			$this->Flash->error(__('Todos los campos deben estar llenos'));
+			return $this->redirect(['action' => 'select']);
+		}
+
+		$sourceRoute = $this->request->data['sourceRoute'];
+		$destinationRoute = $this->request->data['destinationRoute'];
+		$date = $this->request->data['date'];
+		if(date('w', strtotime($date)) == 6 || date('w', strtotime($date)) == 0)  {
+			$routes = $this->Routes->find('all')->where([
+				'source' => $sourceRoute,
+				'destination' => $destinationRoute,
+				'weekend' => 1
+			]);
+			$this->set('date');
+			$this->set('routes', $this->paginate($routes));
+		} else {
+			$routes = $this->Routes->find('all')->where([
+				'source' => $sourceRoute,
+				'destination' => $destinationRoute,
+				'weekday' => 1
+			]);
+			$this->set('date');
+			$this->set('routes', $this->paginate($routes));
+		}
+	}
+
+	public function purchase($id = null)
+	{
+		if (empty($this->request->data)) {
+			throw new BadRequestException(__('Bad Request'));
+		}
+		$route = $this->Routes->get($id);
+		$date = $this->request->data['date'];
+		$reservations = $this->Routes->Reservations
+			->find()
+			->where(['route_id' => $id])
+			->count();
+		$seatsLeft = 20 - $reservations;
+
+		$this->set(compact('route', 'date', 'seatsLeft'));
+	}
+
+	public function buy($id = null)
+	{
+		if (empty($this->request->data)) {
+			return $this->redirect(['action' => 'select']);
+		}
+		$requestData = $this->request->data;
+		$requestData['route_id'] = $id;
+		if (!$this->Auth->user()) {
+			$this->request->session()->write('requestData', [$requestData]);
+			return $this->redirect(['controller' => 'Users', 'action' => 'login']);
+		}
+
+		$this->set(compact('requestData'));
+	}
+
+	public function confirm()
+	{
+		$request = $this->request->data;
+		pr($request);
+		$this->request->session()->write('request', $request);
+		$this->set(compact('request'));
+	}
+
+	public function sale()
+	{
+
+		if (!$this->request->is('post')) {
+			return $this->redirect(['action' => 'select']);
+		}
+
+		$userId = $this->Auth->user('id');
+		$routeId = $this->request->data['route_id'];
+		$sourceRoute = $this->request->data['sourceRoute'];
+		$destinationRoute = $this->request->data['destinationRoute'];
+		$hour = $this->request->data['hour'];
+		$date = str_replace(',', '', $this->request->data['date']);
+		$data = [];
+		if (isset($this->request->data['regular']) && !empty($this->request->data['regular'])) {
+			foreach ($this->request->data['regular'] as $name) {
+				$data[] = [
+					'user_id' => $userId,
+					'route_id' => $routeId,
+					'passenger' => $name,
+					'date' => $date,
+					'price' => '250'
+				];
+			}
+		}
+		if (isset($this->request->data['half']) && !empty($this->request->data['half'])) {
+			foreach ($this->request->data['half'] as $name) {
+				$data[] = [
+					'user_id' => $userId,
+					'route_id' => $routeId,
+					'passenger' => $name,
+					'date' => $date,
+					'price' => '125'
+				];
+			}
+		}
+		$reservations = TableRegistry::get('Reservations');
+		$entities = $reservations->newEntities($data);
+		foreach ($entities as $entity) {
+			if (!$reservations->save($entity)) {
+			 	return $this->redirect(['action' => 'select']);
+			 }
+		}
+
+		$this->set(compact('data', 'sourceRoute', 'destinationRoute', 'hour'));
 	}
 }

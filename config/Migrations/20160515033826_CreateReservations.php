@@ -1,7 +1,7 @@
 <?php
 use Migrations\AbstractMigration;
 
-class CreateUsersRoutes extends AbstractMigration
+class CreateReservations extends AbstractMigration
 {
 	/**
 	 * Change Method.
@@ -12,7 +12,7 @@ class CreateUsersRoutes extends AbstractMigration
 	 */
 	public function change()
 	{
-		$table = $this->table('users_routes');
+		$table = $this->table('reservations');
 		$table->addColumn('user_id', 'uuid', [
 			'default' => null,
 			'null' => false,
@@ -22,8 +22,18 @@ class CreateUsersRoutes extends AbstractMigration
 			'limit' => 255,
 			'null' => false,
 		]);
+		$table->addColumn('passenger', 'string', [
+			'default' => null,
+			'limit' => 255,
+			'null' => false,
+		]);
 		$table->addColumn('date', 'date', [
 			'default' => null,
+			'null' => false,
+		]);
+		$table->addColumn('price', 'integer', [
+			'default' => null,
+			'limit' => 11,
 			'null' => false,
 		]);
 		$table->addColumn('created', 'datetime', [

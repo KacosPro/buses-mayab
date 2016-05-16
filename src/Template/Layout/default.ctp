@@ -36,7 +36,17 @@
 				<ul class="nav navbar-nav navbar-right">
 					<li>
 					<?php if (isset($user)): ?>
-						<p><?= $user->name; ?></p>
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><?=
+							$user['name'] . ' ' . $user['lastname']
+						?> <span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a href="#"><?= __('Mostrar historial') ?></a></li>
+							<li role="separator" class="divider"></li>
+							<li><?= $this->Html->link(__('Salir'), [
+								'controller' => 'Users',
+								'action' => 'logout'
+							]) ?></li>
+						</ul>
 					<?php else: ?>
 						<?= $this->Html->link('Acceder',
 							['controller' => 'Users', 'action' => 'login']

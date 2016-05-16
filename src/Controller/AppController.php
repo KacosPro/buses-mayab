@@ -43,11 +43,21 @@ class AppController extends Controller
 
 		$this->loadComponent('RequestHandler');
 		$this->loadComponent('Flash');
-		$this->loadComponent('Auth');
+		$this->loadComponent('Auth', [
+			'authorize' => ['Controller'],
+			'loginRedirect' => [
+				'controller' => 'Routes',
+				'action' => 'select'
+			],
+			'logoutRedirect' => [
+				'controller' => 'Routes',
+				'action' => 'select'
+			]
+		]);
 
 		if ($this->Auth->user()) {
 			$user = $this->Auth->user();
-			$this->set('user');
+			$this->set(compact('user'));
 		}
 	}
 
