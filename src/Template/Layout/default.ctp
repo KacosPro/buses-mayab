@@ -40,7 +40,10 @@
 							$user['name'] . ' ' . $user['lastname']
 						?> <span class="caret"></span></a>
 						<ul class="dropdown-menu">
-							<li><a href="#"><?= __('Mostrar historial') ?></a></li>
+							<li><?= $this->Html->link(__('Mostrar historial'), [
+								'controller' => 'Reservations',
+								'action' => 'index'
+							]) ?></li>
 							<li role="separator" class="divider"></li>
 							<li><?= $this->Html->link(__('Salir'), [
 								'controller' => 'Users',

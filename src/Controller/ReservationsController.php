@@ -19,7 +19,8 @@ class ReservationsController extends AppController
     public function index()
     {
         $this->paginate = [
-            'contain' => ['Users', 'Routes']
+            'contain' => ['Routes'],
+            'conditions' => ['user_id' => $this->Auth->user('id')]
         ];
         $reservations = $this->paginate($this->Reservations);
 
