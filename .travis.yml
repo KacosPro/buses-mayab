@@ -1,16 +1,11 @@
 language: php
 
-sudo: false
-
 php:
-  - 7.0
+    - 7.0
+    - 5.5
+    - 5.4
+    - 5.3
 
-before_script:
-  - sh -c "composer require 'cakephp/cakephp-codesniffer:dev-master'"
-  - phpenv rehash
+before_script: composer install
 
-script:
-  - sh -c "vendor/bin/phpcs -p --extensions=php ./src ./tests ./config ./webroot"
-
-notifications:
-  email: false
+script: phpunit --configuration tests/phpunit.xml
