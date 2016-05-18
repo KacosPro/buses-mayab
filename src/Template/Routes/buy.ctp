@@ -1,6 +1,6 @@
 <div class="row">
 	<div class="col-md-6 col-md-offset-3">
-		<?= $this->TWBForm->create('purchase', ['url' => ['action' => 'confirm']]) ?>
+		<?= $this->TWBForm->create('purchase', ['url' => ['action' => 'confirm'], 'id' => 'form']) ?>
 			<input type="hidden" name="sourceRoute" value="<?= $requestData['sourceRoute'] ?>">
 			<input type="hidden" name="destinationRoute" value="<?= $requestData['destinationRoute'] ?>">
 			<input type="hidden" name="hour" value="<?= $this->Time->format($requestData['hour'], 'HH:mm:ss') ?>">

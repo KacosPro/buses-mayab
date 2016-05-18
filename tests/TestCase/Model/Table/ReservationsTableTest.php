@@ -16,7 +16,7 @@ class ReservationsTableTest extends TestCase
      *
      * @var \App\Model\Table\ReservationsTable
      */
-    public $Reservations;
+    public $ReservationsTable;
 
     /**
      * Fixtures
@@ -26,8 +26,7 @@ class ReservationsTableTest extends TestCase
     public $fixtures = [
         'app.reservations',
         'app.users',
-        'app.routes',
-        'app.users_routes'
+        'app.routes'
     ];
 
     /**
@@ -39,7 +38,7 @@ class ReservationsTableTest extends TestCase
     {
         parent::setUp();
         $config = TableRegistry::exists('Reservations') ? [] : ['className' => 'App\Model\Table\ReservationsTable'];
-        $this->Reservations = TableRegistry::get('Reservations', $config);
+        $this->ReservationsTable = TableRegistry::get('Reservations', $config);
     }
 
     /**
@@ -49,7 +48,7 @@ class ReservationsTableTest extends TestCase
      */
     public function tearDown()
     {
-        unset($this->Reservations);
+        unset($this->ReservationsTable);
 
         parent::tearDown();
     }

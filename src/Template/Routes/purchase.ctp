@@ -1,7 +1,7 @@
 <div class="row">
 	<div class="col-md-6 col-md-offset-3">
 
-		<?= $this->TWBForm->create($route, ['url' => ['action' => 'buy']]) ?>
+		<?= $this->TWBForm->create($route, ['url' => ['action' => 'buy'], 'id' => 'form']) ?>
 			<div style="display:none;"><input type="hidden" class="form-control" name="_method" value="PUT"></div>
 			<div class="form-group">
 				<label class="col-sm-2 control-label"><?= __('Origen') ?></label>

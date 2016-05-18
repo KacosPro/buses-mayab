@@ -3,6 +3,7 @@ namespace App\Test\TestCase\Controller;
 
 use App\Controller\UsersController;
 use Cake\TestSuite\IntegrationTestCase;
+use Cake\ORM\TableRegistry;
 
 /**
  * App\Controller\UsersController Test Case
@@ -10,64 +11,126 @@ use Cake\TestSuite\IntegrationTestCase;
 class UsersControllerTest extends IntegrationTestCase
 {
 
-    /**
-     * Fixtures
-     *
-     * @var array
-     */
-    public $fixtures = [
-        'app.users',
-        'app.routes',
-        'app.users_routes'
-    ];
+	/**
+	 * Fixtures
+	 *
+	 * @var array
+	 */
+	public $fixtures = [
+		'app.users',
+		'app.reservations',
+		'app.routes'
+	];
 
-    /**
-     * Test index method
-     *
-     * @return void
-     */
-    public function testIndex()
-    {
-        $this->markTestIncomplete('Not implemented yet.');
-    }
+	public function testAdd()
+	{
+		$this->get('/users/add');
 
-    /**
-     * Test view method
-     *
-     * @return void
-     */
-    public function testView()
-    {
-        $this->markTestIncomplete('Not implemented yet.');
-    }
+		$this->assertResponseOk();
 
-    /**
-     * Test add method
-     *
-     * @return void
-     */
-    public function testAdd()
-    {
-        $this->markTestIncomplete('Not implemented yet.');
-    }
+		$data = [
+		'id' => '130a5222-52b7-41f3-9542-b8e326490dfb',
+		'username' => 'ken.kitchen',
+		'password' => 'qwerty',
+		'confirmPassword' => 'qwerty',
+		'name' => 'name',
+		'lastname' => 'lastname',
+		'email' => 'a@b.com',
+		'created' => time(),
+		'modified' => time()
+		];
+		$this->post('/users/add', $data);
 
-    /**
-     * Test edit method
-     *
-     * @return void
-     */
-    public function testEdit()
-    {
-        $this->markTestIncomplete('Not implemented yet.');
-    }
+		$this->assertResponseSuccess();
 
-    /**
-     * Test delete method
-     *
-     * @return void
-     */
-    public function testDelete()
-    {
-        $this->markTestIncomplete('Not implemented yet.');
-    }
+		$users = TableRegistry::get('Users');
+		$query = $users->find()->where(['username' => $data['username']]);
+		$this->assertEquals(1, $query->count());
+	}
+
+	public function testEdit()
+	{
+		$this->get('/users/add');
+
+		$this->assertResponseOk();
+
+		$data = [
+		'id' => '130a5222-52b7-41f3-9542-b8e326490dfb',
+		'username' => 'ken.kitchen',
+		'password' => 'qwerty',
+		'confirmPassword' => 'qwerty',
+		'name' => 'name',
+		'lastname' => 'lastname',
+		'email' => 'a@b.com',
+		'created' => time(),
+		'modified' => time()
+		];
+		$this->post('/users/add', $data);
+
+		$this->assertResponseSuccess();
+
+		$this->get('/users/edit/130a5222-52b7-41f3-9542-b8e326490dfb');
+
+		$newData = [
+		'id' => '130a5222-52b7-41f3-9542-b8e326490dfb',
+		'username' => 'ken.kitchen',
+		'password' => 'asdfg',
+		'confirmPassword' => 'asdfg',
+		'name' => 'name',
+		'lastname' => 'lastname',
+		'email' => 'a@b.com',
+		'created' => time(),
+		'modified' => time()
+		];
+		$this->post('/users/edit/130a5222-52b7-41f3-9542-b8e326490dfb', $newData);
+
+		$this->assertResponseSuccess();
+
+		$users = TableRegistry::get('Users');
+		$query = $users->find()->where(['username' => $data['username']]);
+		$this->assertEquals(1, $query->count());
+	}
+
+	public function testSameMail()
+	{
+		$this->get('/users/add');
+
+		$this->assertResponseOk();
+
+		$data = [
+		'id' => '130a5222-52b7-41f3-9542-b8e326490dfb',
+		'username' => 'ken.kitchen',
+		'password' => 'qwerty',
+		'confirmPassword' => 'qwerty',
+		'name' => 'name',
+		'lastname' => 'lastname',
+		'email' => 'a@b.com',
+		'created' => time(),
+		'modified' => time()
+		];
+		$this->post('/users/add', $data);
+
+		$this->assertResponseSuccess();
+
+		$this->get('/users/add');
+
+		$sameData = [
+		'id' => '220b5222-52b7-41f3-9782-b8e326g57dnh',
+		'username' => 'chucho',
+		'password' => 'asdfg',
+		'confirmPassword' => 'asdfg',
+		'name' => 'name',
+		'lastname' => 'lastname',
+		'email' => 'a@b.com',
+		'created' => time(),
+		'modified' => time()
+		];
+		$this->post('/users/add', $sameData);
+
+		$this->assertResponseSuccess();
+
+		$users = TableRegistry::get('Users');
+		$query = $users->find()->where(['username' => $sameData['username']]);
+		$this->assertEquals(0, $query->count());
+	}
 }

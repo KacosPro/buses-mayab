@@ -10,64 +10,77 @@ use Cake\TestSuite\IntegrationTestCase;
 class RoutesControllerTest extends IntegrationTestCase
 {
 
-    /**
-     * Fixtures
-     *
-     * @var array
-     */
-    public $fixtures = [
-        'app.routes',
-        'app.users',
-        'app.users_routes'
-    ];
+	/**
+	 * Fixtures
+	 *
+	 * @var array
+	 */
+	public $fixtures = [
+		'app.routes',
+		'app.reservations',
+		'app.users'
+	];
 
-    /**
-     * Test index method
-     *
-     * @return void
-     */
-    public function testIndex()
-    {
-        $this->markTestIncomplete('Not implemented yet.');
-    }
+	/**
+	 * Test add method
+	 *
+	 * @return void
+	 */
+	public function testAdd()
+	{
+	}
 
-    /**
-     * Test view method
-     *
-     * @return void
-     */
-    public function testView()
-    {
-        $this->markTestIncomplete('Not implemented yet.');
-    }
+	/**
+	 * Test select method
+	 *
+	 * @return void
+	 */
+	public function testSelect()
+	{
+	}
 
-    /**
-     * Test add method
-     *
-     * @return void
-     */
-    public function testAdd()
-    {
-        $this->markTestIncomplete('Not implemented yet.');
-    }
+	/**
+	 * Test schedule method
+	 *
+	 * @return void
+	 */
+	public function testSchedule()
+	{
+	}
 
-    /**
-     * Test edit method
-     *
-     * @return void
-     */
-    public function testEdit()
-    {
-        $this->markTestIncomplete('Not implemented yet.');
-    }
+	/**
+	 * Test purchase method
+	 *
+	 * @return void
+	 */
+	public function testPurchase()
+	{
+	}
 
-    /**
-     * Test delete method
-     *
-     * @return void
-     */
-    public function testDelete()
-    {
-        $this->markTestIncomplete('Not implemented yet.');
-    }
+	/**
+	 * Test buy method
+	 *
+	 * @return void
+	 */
+	public function testBuy()
+	{
+	}
+
+	/**
+	 * Test confirm method
+	 *
+	 * @return void
+	 */
+	public function testConfirm()
+	{
+	}
+
+	/**
+	 * Test sale method
+	 *
+	 * @return void
+	 */
+	public function testSale()
+	{
+	}
 }

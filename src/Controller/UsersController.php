@@ -89,9 +89,14 @@ class UsersController extends AppController
 		]);
 		if ($this->request->is(['patch', 'post', 'put'])) {
 			$user = $this->Users->patchEntity($user, $this->request->data);
+			if ($this->request->data['password'] !== $this->request->data['confirmPassword']) {
+				$user = $this->Users->newEntity();
+				$this->set(compact('user'));
+				return $this->Flash->error(__('Las contraseñas no son las mismas'));
+			}
 			if ($this->Users->save($user)) {
 				$this->Flash->success(__('The user has been saved.'));
-				return $this->redirect(['action' => 'index']);
+				return $this->redirect(['controller' => 'Routes', 'action' => 'select']);
 			} else {
 				$this->Flash->error(__('The user could not be saved. Please, try again.'));
 			}
@@ -99,25 +104,6 @@ class UsersController extends AppController
 		$routes = $this->Users->Routes->find('list', ['limit' => 200]);
 		$this->set(compact('user', 'routes'));
 		$this->set('_serialize', ['user']);
-	}
-
-	/**
-	 * Delete method
-	 *
-	 * @param string|null $id User id.
-	 * @return \Cake\Network\Response|null Redirects to index.
-	 * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-	 */
-	public function delete($id = null)
-	{
-		$this->request->allowMethod(['post', 'delete']);
-		$user = $this->Users->get($id);
-		if ($this->Users->delete($user)) {
-			$this->Flash->success(__('The user has been deleted.'));
-		} else {
-			$this->Flash->error(__('The user could not be deleted. Please, try again.'));
-		}
-		return $this->redirect(['action' => 'index']);
 	}
 
 	public function login()

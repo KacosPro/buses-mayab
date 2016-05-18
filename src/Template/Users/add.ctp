@@ -16,7 +16,7 @@
 	<body>
 		<div class="container" >
 			<?= $this->Flash->render() ?>
-			<?= $this->TWBForm->create($user) ?>
+			<?= $this->TWBForm->create($user, ['id' => 'userform']) ?>
 				<legend><?= __('Add User') ?></legend>
 				<?php
 					echo $this->TWBForm->input('username');

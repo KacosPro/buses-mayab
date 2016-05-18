@@ -2,7 +2,7 @@
 <div class="row">
 	<div class="col-md-6 col-md-offset-3">
 		<?php
-		echo $this->TWBForm->create($route, ['url' => ['action' => 'schedule']]);
+		echo $this->TWBForm->create($route, ['url' => ['action' => 'schedule'], 'id' => 'form']);
 		echo $this->TWBForm->label('sourceRoute');
 		echo $this->TWBForm->select('sourceRoute', $sourceRoutes, ['required' => 'required']);
 		echo '<br>';

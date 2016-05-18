@@ -1,6 +1,6 @@
 <div class="row">
 	<div class="col-md-8 col-md-offset-2">
-	<?= $this->TWBForm->create('purchase', ['url' => ['action' => 'sale']]) ?>
+	<?= $this->TWBForm->create('purchase', ['url' => ['action' => 'sale'], 'id' => 'form']) ?>
 		<?php foreach ($request as $key => $value): ?>
 			<?php $myKey = $key ?>
 			<?php if (is_array($value)): ?>

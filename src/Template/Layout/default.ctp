@@ -31,7 +31,12 @@
 		<nav class="navbar navbar-default">
 			<div class="container-fluid">
 				<div class="navbar-header">
-					<a class="navbar-brand" href="#">Autobuses CNP</a>
+					<?= $this->Html->link(__('Autobuses CNP'), [
+							'controller' => 'Routes', 'action' => 'select'
+						], [
+							'class' => 'navbar-brand'
+						]
+					) ?>
 				</div>
 				<ul class="nav navbar-nav navbar-right">
 					<li>
@@ -40,6 +45,11 @@
 							$user['name'] . ' ' . $user['lastname']
 						?> <span class="caret"></span></a>
 						<ul class="dropdown-menu">
+							<li><?= $this->Html->link(__('Editar'), [
+								'controller' => 'Users',
+								'action' => 'edit',
+								$user['id']
+							]) ?></li>
 							<li><?= $this->Html->link(__('Mostrar historial'), [
 								'controller' => 'Reservations',
 								'action' => 'index'
