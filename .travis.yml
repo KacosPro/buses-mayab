@@ -5,7 +5,7 @@ php:
 
 before_script:
   - sh -c "mysql -e 'CREATE DATABASE turnera;'"
-  - mkdir app/tmp
+  - mkdir -p app/tmp
   - mkdir app/tmp/cache
   - mkdir app/tmp/cache/models
   - mkdir app/tmp/cache/persistent
