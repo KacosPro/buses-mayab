@@ -37,34 +37,33 @@ class AppController extends Controller
  *
  * @return void
  */
-	public function initialize()
-	{
-		parent::initialize();
+public function initialize()
+{
+	parent::initialize();
 
-		$this->loadComponent('RequestHandler');
-		$this->loadComponent('Flash');
-		$this->loadComponent('Auth', [
-			'authorize' => ['Controller'],
-			'loginRedirect' => [
-				'controller' => 'Routes',
-				'action' => 'select'
-			],
-			'logoutRedirect' => [
-				'controller' => 'Routes',
-				'action' => 'select'
-			]
-		]);
-
+	$this->loadComponent('RequestHandler');
+	$this->loadComponent('Flash');
+	$this->loadComponent('Auth', [
+		'authorize' => ['Controller'],
+		'loginRedirect' => [
+			'controller' => 'Routes',
+			'action' => 'select'
+		],
+		'logoutRedirect' => [
+			'controller' => 'Routes',
+			'action' => 'select'
+		]
+	]);
 		if ($this->Auth->user()) {
-			$user = $this->Auth->user();
-			$this->set(compact('user'));
-		}
+		$user = $this->Auth->user();
+		$this->set(compact('user'));
 	}
+}
 
-	public function beforeFilter(Event $event)
-	{
-		$this->Auth->allow();
-	}
+public function beforeFilter(Event $event)
+{
+	$this->Auth->allow();
+}
 
 	public function beforeRender(Event $event)
 	{
