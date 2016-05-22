@@ -12,6 +12,6 @@ before_script:
 
 script:
   - sh -c "vendor/bin/phpcs -p --extensions=php --standard=vendor/cakephp/cakephp-codesniffer/CakePHP ./src ./tests ./webroot"
-  - phpunit /test/TestCase/Controller/.
+  - phpunit ./test/TestCase/Controller
 notifications:
   email: false
