@@ -5,63 +5,77 @@ use Cake\View\Helper\PaginatorHelper;
 
 class TWBPaginatorHelper extends PaginatorHelper
 {
-	protected $_defaultConfig = [
-		'options' => [],
-		'templates' => [
-			'nextActive' => '<li class="next"><a rel="next" href="{{url}}" aria-label="Next"><span aria-hidden="true">&raquo;</span>{{text}}</a></li>',
-			'nextDisabled' => '<li class="next disabled"><a href="" onclick="return false;" aria-label="Next"><span aria-hidden="true">&raquo;</span>{{text}}</a></li>',
-			'prevActive' => '<li class="prev"><a rel="prev" href="{{url}}" aria-label="Previous"><span aria-hidden="true">&laquo;</span>{{text}}</a></li>',
-			'prevDisabled' => '<li class="prev disabled"><a href="" onclick="return false;" aria-label="Previous"><span aria-hidden="true">&laquo;</span>{{text}}</a></li>',
-			'counterRange' => '{{start}} - {{end}} of {{count}}',
-			'counterPages' => '{{page}} of {{pages}}',
-			'first' => '<li class="first"><a href="{{url}}">{{text}}</a></li>',
-			'last' => '<li class="last"><a href="{{url}}">{{text}}</a></li>',
-			'number' => '<li><a href="{{url}}">{{text}}</a></li>',
-			'current' => '<li class="active"><a href="">{{text}}</a></li>',
-			'ellipsis' => '<li class="ellipsis">...</li>',
-			'sort' => '<a href="{{url}}">{{text}}</a>',
-			'sortAsc' => '<a class="asc" href="{{url}}">{{text}}</a>',
-			'sortDesc' => '<a class="desc" href="{{url}}">{{text}}</a>',
-			'sortAscLocked' => '<a class="asc locked" href="{{url}}">{{text}}</a>',
-			'sortDescLocked' => '<a class="desc locked" href="{{url}}">{{text}}</a>',
-		]
-	];
+    protected $_defaultConfig = [
+        'options' => [],
+        'templates' => [
+            'nextActive' => '<li class="next"><a rel="next" href="{{url}}" aria-label="Next"><span aria-hidden="true">&raquo;</span>{{text}}</a></li>',
+            'nextDisabled' => '<li class="next disabled"><a href="" onclick="return false;" aria-label="Next"><span aria-hidden="true">&raquo;</span>{{text}}</a></li>',
+            'prevActive' => '<li class="prev"><a rel="prev" href="{{url}}" aria-label="Previous"><span aria-hidden="true">&laquo;</span>{{text}}</a></li>',
+            'prevDisabled' => '<li class="prev disabled"><a href="" onclick="return false;" aria-label="Previous"><span aria-hidden="true">&laquo;</span>{{text}}</a></li>',
+            'counterRange' => '{{start}} - {{end}} of {{count}}',
+            'counterPages' => '{{page}} of {{pages}}',
+            'first' => '<li class="first"><a href="{{url}}">{{text}}</a></li>',
+            'last' => '<li class="last"><a href="{{url}}">{{text}}</a></li>',
+            'number' => '<li><a href="{{url}}">{{text}}</a></li>',
+            'current' => '<li class="active"><a href="">{{text}}</a></li>',
+            'ellipsis' => '<li class="ellipsis">...</li>',
+            'sort' => '<a href="{{url}}">{{text}}</a>',
+            'sortAsc' => '<a class="asc" href="{{url}}">{{text}}</a>',
+            'sortDesc' => '<a class="desc" href="{{url}}">{{text}}</a>',
+            'sortAscLocked' => '<a class="asc locked" href="{{url}}">{{text}}</a>',
+            'sortDescLocked' => '<a class="desc locked" href="{{url}}">{{text}}</a>',
+        ]
+    ];
 
-	public function prev($title = '', array $options = [])
-	{
-		$defaults = [
-			'url' => [],
-			'model' => $this->defaultModel(),
-			'disabledTitle' => $title,
-			'escape' => true,
-		];
-		$options += $defaults;
-		$options['step'] = -1;
+    /**
+     * Prev method.
+     *
+     * @param string $title Title
+     * @param array $options Options
+     * @return link
+     */
+    public function prev($title = '', array $options = [])
+    {
+        $defaults = [
+            'url' => [],
+            'model' => $this->defaultModel(),
+            'disabledTitle' => $title,
+            'escape' => true,
+        ];
+        $options += $defaults;
+        $options['step'] = -1;
 
-		$enabled = $this->hasPrev($options['model']);
-		$templates = [
-			'active' => 'prevActive',
-			'disabled' => 'prevDisabled'
-		];
-		return $this->_toggledLink($title, $enabled, $options, $templates);
-	}
+        $enabled = $this->hasPrev($options['model']);
+        $templates = [
+            'active' => 'prevActive',
+            'disabled' => 'prevDisabled'
+        ];
+        return $this->_toggledLink($title, $enabled, $options, $templates);
+    }
 
-	public function next($title = '', array $options = [])
-	{
-		$defaults = [
-			'url' => [],
-			'model' => $this->defaultModel(),
-			'disabledTitle' => $title,
-			'escape' => true,
-		];
-		$options += $defaults;
-		$options['step'] = 1;
+    /**
+     * Next method.
+     *
+     * @param string $title Title
+     * @param array $options Options
+     * @return link
+     */
+    public function next($title = '', array $options = [])
+    {
+        $defaults = [
+            'url' => [],
+            'model' => $this->defaultModel(),
+            'disabledTitle' => $title,
+            'escape' => true,
+        ];
+        $options += $defaults;
+        $options['step'] = 1;
 
-		$enabled = $this->hasNext($options['model']);
-		$templates = [
-			'active' => 'nextActive',
-			'disabled' => 'nextDisabled'
-		];
-		return $this->_toggledLink($title, $enabled, $options, $templates);
-	}
+        $enabled = $this->hasNext($options['model']);
+        $templates = [
+            'active' => 'nextActive',
+            'disabled' => 'nextDisabled'
+        ];
+        return $this->_toggledLink($title, $enabled, $options, $templates);
+    }
 }

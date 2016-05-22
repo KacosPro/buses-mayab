@@ -28,47 +28,59 @@ use Cake\Event\Event;
 class AppController extends Controller
 {
 
-/**
- * Initialization hook method.
- *
- * Use this method to add common initialization code like loading components.
- *
- * e.g. `$this->loadComponent('Security');`
- *
- * @return void
- */
-public function initialize()
-{
-	parent::initialize();
+    /**
+     * Initialization hook method.
+     *
+     * Use this method to add common initialization code like loading components.
+     *
+     * e.g. `$this->loadComponent('Security');`
+     *
+     * @return void
+     */
+    public function initialize()
+    {
+        parent::initialize();
 
-	$this->loadComponent('RequestHandler');
-	$this->loadComponent('Flash');
-	$this->loadComponent('Auth', [
-		'authorize' => ['Controller'],
-		'loginRedirect' => [
-			'controller' => 'Routes',
-			'action' => 'select'
-		],
-		'logoutRedirect' => [
-			'controller' => 'Routes',
-			'action' => 'select'
-		]
-	]);
-		if ($this->Auth->user()) {
-		$user = $this->Auth->user();
-		$this->set(compact('user'));
-	}
-}
+        $this->loadComponent('RequestHandler');
+        $this->loadComponent('Flash');
+        $this->loadComponent('Auth', [
+        'authorize' => ['Controller'],
+        'loginRedirect' => [
+            'controller' => 'Routes',
+            'action' => 'select'
+        ],
+        'logoutRedirect' => [
+            'controller' => 'Routes',
+            'action' => 'select'
+        ]
+        ]);
+        if ($this->Auth->user()) {
+            $user = $this->Auth->user();
+            $this->set(compact('user'));
+        }
+    }
 
-public function beforeFilter(Event $event)
-{
-	$this->Auth->allow();
-}
+    /**
+     * Before Filter method.
+     *
+     * @param Event $event Event
+     * @return void
+     */
+    public function beforeFilter(Event $event)
+    {
+        $this->Auth->allow();
+    }
 
-	public function beforeRender(Event $event)
-	{
-		if (!array_key_exists('_serialize', $this->viewVars) && in_array($this->response->type(), ['application/json', 'application/xml'])) {
-			$this->set('_serialize', true);
-		}
-	}
+    /**
+     * Before Render method.
+     *
+     * @param Event $event Event
+     * @return void
+     */
+    public function beforeRender(Event $event)
+    {
+        if (!array_key_exists('_serialize', $this->viewVars) && in_array($this->response->type(), ['application/json', 'application/xml'])) {
+            $this->set('_serialize', true);
+        }
+    }
 }

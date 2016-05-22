@@ -10,23 +10,23 @@ use Cake\TestSuite\IntegrationTestCase;
 class ReservationsControllerTest extends IntegrationTestCase
 {
 
-	/**
-	 * Fixtures
-	 *
-	 * @var array
-	 */
-	public $fixtures = [
-		'app.reservations',
-		'app.users',
-		'app.routes'
-	];
+    /**
+     * Fixtures
+     *
+     * @var array
+     */
+    public $fixtures = [
+        'app.reservations',
+        'app.users',
+        'app.routes'
+    ];
 
-	/**
-	 * Test index method
-	 *
-	 * @return void
-	 */
-	public function testIndex()
-	{
-	}
+    /**
+     * Test index method
+     *
+     * @return void
+     */
+    public function testIndex()
+    {
+    }
 }

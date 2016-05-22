@@ -20,7 +20,7 @@
 		?>
 	</div>
 </div>
-<?= $this->Html->script('jquery-ui.js', ['defer' => true]) ?>
+<?= $this->Html->script('https://code.jquery.com/ui/1.11.4/jquery-ui.min.js', ['defer' => true]) ?>
 <?= $this->Html->scriptBlock("$(function() {
 		$( '#date' ).datepicker({
 			minDate: 0,

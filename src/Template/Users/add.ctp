@@ -8,7 +8,7 @@
 		<title><?= 'Autobuses De la Mayab' ?>:<?= $this->fetch('title') ?></title>
 		<?= $this->Html->meta('icon') ?>
 
-		<?= $this->Html->css('bootswatch.css') ?>
+		<?= $this->Html->css('https://bootswatch.com/paper/bootstrap.min.css') ?>
 
 		<?= $this->fetch('meta') ?>
 		<?= $this->fetch('css') ?>
@@ -32,7 +32,7 @@
 			<?= $this->TWBForm->end() ?>
 		</div>
 	</body>
-	<?= $this->Html->script('jquery.js') ?>
-	<?= $this->Html->script('bootstrap.js') ?>
+	<?= $this->Html->script('https://code.jquery.com/jquery-1.12.4.min.js') ?>
+	<?= $this->Html->script('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js') ?>
 	<?= $this->fetch('script') ?>
 </html>

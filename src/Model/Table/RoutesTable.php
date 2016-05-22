@@ -15,68 +15,68 @@ use Cake\Validation\Validator;
 class RoutesTable extends Table
 {
 
-	/**
-	 * Initialize method
-	 *
-	 * @param array $config The configuration for the Table.
-	 * @return void
-	 */
-	public function initialize(array $config)
-	{
-		parent::initialize($config);
+    /**
+     * Initialize method
+     *
+     * @param array $config The configuration for the Table.
+     * @return void
+     */
+    public function initialize(array $config)
+    {
+        parent::initialize($config);
 
-		$this->table('routes');
-		$this->displayField('id');
-		$this->primaryKey('id');
+        $this->table('routes');
+        $this->displayField('id');
+        $this->primaryKey('id');
 
-		$this->addBehavior('Timestamp');
+        $this->addBehavior('Timestamp');
 
-		$this->hasMany('Reservations', [
-			'foreignKey' => 'route_id'
-		]);
+        $this->hasMany('Reservations', [
+            'foreignKey' => 'route_id'
+        ]);
 
-		$this->belongsToMany('Users', [
-			'foreignKey' => 'route_id',
-			'targetForeignKey' => 'user_id',
-			'joinTable' => 'reservations'
-		]);
-	}
+        $this->belongsToMany('Users', [
+            'foreignKey' => 'route_id',
+            'targetForeignKey' => 'user_id',
+            'joinTable' => 'reservations'
+        ]);
+    }
 
-	/**
-	 * Default validation rules.
-	 *
-	 * @param \Cake\Validation\Validator $validator Validator instance.
-	 * @return \Cake\Validation\Validator
-	 */
-	public function validationDefault(Validator $validator)
-	{
-		$validator
-			->integer('id')
-			->allowEmpty('id', 'create');
+    /**
+     * Default validation rules.
+     *
+     * @param \Cake\Validation\Validator $validator Validator instance.
+     * @return \Cake\Validation\Validator
+     */
+    public function validationDefault(Validator $validator)
+    {
+        $validator
+            ->integer('id')
+            ->allowEmpty('id', 'create');
 
-		$validator
-			->requirePresence('source', 'create')
-			->notEmpty('source');
+        $validator
+            ->requirePresence('source', 'create')
+            ->notEmpty('source');
 
-		$validator
-			->requirePresence('destination', 'create')
-			->notEmpty('destination');
+        $validator
+            ->requirePresence('destination', 'create')
+            ->notEmpty('destination');
 
-		$validator
-			->time('hour')
-			->requirePresence('hour', 'create')
-			->notEmpty('hour');
+        $validator
+            ->time('hour')
+            ->requirePresence('hour', 'create')
+            ->notEmpty('hour');
 
-		$validator
-			->boolean('weekday')
-			->requirePresence('weekday', 'create')
-			->notEmpty('weekday');
+        $validator
+            ->boolean('weekday')
+            ->requirePresence('weekday', 'create')
+            ->notEmpty('weekday');
 
-		$validator
-			->boolean('weekend')
-			->requirePresence('weekend', 'create')
-			->notEmpty('weekend');
+        $validator
+            ->boolean('weekend')
+            ->requirePresence('weekend', 'create')
+            ->notEmpty('weekend');
 
-		return $validator;
-	}
+        return $validator;
+    }
 }

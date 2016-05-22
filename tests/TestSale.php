@@ -1,5 +1,6 @@
 <?php
-class TestSale extends PHPUnit_Extensions_Selenium2TestCase{
+class TestSale extends PHPUnit_Extensions_Selenium2TestCase
+{
 
     protected function setUp()
     {
@@ -9,15 +10,13 @@ class TestSale extends PHPUnit_Extensions_Selenium2TestCase{
 
     public function testDiffPw()
     {
-        $this->url( 'http://localhost:8765' );
-        $forma = $this->byId( 'form' );
+        $this->url('http://localhost:8765');
+        $forma = $this->byId('form');
         $this->select($this->byName('sourceRoute'))->selectOptionByValue('Mérida');
         $this->select($this->byName('destinationRoute'))->selectOptionByValue('Campeche');
-        $this->byName( 'date' )->value( '2016-05-16' );
+        $this->byName('date')->value('2016-05-16');
         $forma->submit();
         $resultado = $this->byId('routes')->text();
-        $this->assertEquals( 'Rutas disponibles', $resultado );
+        $this->assertEquals('Rutas disponibles', $resultado);
     }
-
 }
-?>
