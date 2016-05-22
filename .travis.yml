@@ -7,8 +7,6 @@ php:
 
 before_script:
   - sh -c "composer require 'cakephp/cakephp-codesniffer:dev-master'"
-  - sh "apt-get install mysql-server"
-  - sh "apt-get install php7-mysql"
   - phpenv rehash
 
 script:
