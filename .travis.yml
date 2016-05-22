@@ -12,6 +12,10 @@ before_script:
 
 script:
   - sh -c "vendor/bin/phpcs -p --extensions=php --standard=vendor/cakephp/cakephp-codesniffer/CakePHP ./src ./tests ./webroot"
-  - sh -c "vendor/bin/phpunit test/TestCase/Controller/"
+  - sh -c "vendor/bin/phpunit test/TestCase/AddUser.php"
+  - sh -c "vendor/bin/phpunit test/TestCase/TestSale.php"
+  - sh -c "vendor/bin/phpunit test/TestCase/Controller/ReservationsControllerTest.php"
+  - sh -c "vendor/bin/phpunit test/TestCase/Controller/RoutesControllerTest.php"
+  - sh -c "vendor/bin/phpunit test/TestCase/Controller/UsersControllerTest.php"
 notifications:
   email: false
