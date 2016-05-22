@@ -1,6 +1,6 @@
 # Final "Calidad de Software"
 
-[![Build Status]https://travis-ci.org/KacosPro/buses-mayab.svg?branch=master)]((https://travis-ci.org/KacosPro/buses-mayab)
+[![Build Status](https://travis-ci.org/KacosPro/buses-mayab.svg?branch=master)](https://travis-ci.org/KacosPro/buses-mayab)
 
 The framework source code can be found here: [cakephp/cakephp](https://github.com/cakephp/cakephp).
 
