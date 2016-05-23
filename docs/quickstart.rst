@@ -1,564 +1,552 @@
-==========
-Quickstart
-==========
+.. This is a comment. Note how any initial comments are moved by
+   transforms to after the document title, subtitle, and docinfo.
 
-This page provides a quick introduction to Guzzle and introductory examples.
-If you have not already installed, Guzzle, head over to the :ref:`installation`
-page.
+================================
+ reStructuredText Demonstration
+================================
 
+.. Above is the document title, and below is the subtitle.
+   They are transformed from section titles after parsing.
 
-Making a Request
-================
+--------------------------------
+ Examples of Syntax Constructs
+--------------------------------
 
-You can send requests with Guzzle using a ``GuzzleHttp\ClientInterface``
-object.
+.. bibliographic fields (which also require a transform):
 
+:Author: David Goodger
+:Address: 123 Example Street
+          Example, EX  Canada
+          A1B 2C3
+:Contact: docutils-develop@lists.sourceforge.net
+:Authors: Me; Myself; I
+:organization: humankind
+:date: $Date: 2012-01-03 19:23:53 +0000 (Tue, 03 Jan 2012) $
+:status: This is a "work in progress"
+:revision: $Revision: 7302 $
+:version: 1
+:copyright: This document has been placed in the public domain. You
+            may do with it as you wish. You may copy, modify,
+            redistribute, reattribute, sell, buy, rent, lease,
+            destroy, or improve it, quote it at length, excerpt,
+            incorporate, collate, fold, staple, or mutilate it, or do
+            anything else to it that your or anyone else's heart
+            desires.
+:field name: This is a generic bibliographic field.
+:field name 2:
+    Generic bibliographic fields may contain multiple body elements.
 
-Creating a Client
------------------
+    Like this.
 
-.. code-block:: php
+:Dedication:
 
-    use GuzzleHttp\Client;
+    For Docutils users & co-developers.
 
-    $client = new Client([
-        // Base URI is used with relative requests
-        'base_uri' => 'http://httpbin.org',
-        // You can set any number of default request options.
-        'timeout'  => 2.0,
-    ]);
+:abstract:
 
-Clients are immutable in Guzzle 6, which means that you cannot change the defaults used by a client after it's created.
+    This document is a demonstration of the reStructuredText markup
+    language, containing examples of all basic reStructuredText
+    constructs and many advanced constructs.
 
-The client constructor accepts an associative array of options:
+.. meta::
+   :keywords: reStructuredText, demonstration, demo, parser
+   :description lang=en: A demonstration of the reStructuredText
+       markup language, containing examples of all basic
+       constructs and many advanced constructs.
 
-``base_uri``
-    (string|UriInterface) Base URI of the client that is merged into relative
-    URIs. Can be a string or instance of UriInterface. When a relative URI
-    is provided to a client, the client will combine the base URI with the
-    relative URI using the rules described in
-    `RFC 3986, section 2 <http://tools.ietf.org/html/rfc3986#section-5.2>`_.
-
-    .. code-block:: php
-
-        // Create a client with a base URI
-        $client = new GuzzleHttp\Client(['base_uri' => 'https://foo.com/api/']);
-        // Send a request to https://foo.com/api/test
-        $response = $client->request('GET', 'test');
-        // Send a request to https://foo.com/root
-        $response = $client->request('GET', '/root');
-
-    Don't feel like reading RFC 3986? Here are some quick examples on how a
-    ``base_uri`` is resolved with another URI.
-
-    =======================  ==================  ===============================
-    base_uri                 URI                 Result
-    =======================  ==================  ===============================
-    ``http://foo.com``       ``/bar``            ``http://foo.com/bar``
-    ``http://foo.com/foo``   ``/bar``            ``http://foo.com/bar``
-    ``http://foo.com/foo``   ``bar``             ``http://foo.com/bar``
-    ``http://foo.com/foo/``  ``bar``             ``http://foo.com/foo/bar``
-    ``http://foo.com``       ``http://baz.com``  ``http://baz.com``
-    ``http://foo.com/?bar``  ``bar``             ``http://foo.com/bar``
-    =======================  ==================  ===============================
-
-``handler``
-    (callable) Function that transfers HTTP requests over the wire. The
-    function is called with a ``Psr7\Http\Message\RequestInterface`` and array
-    of transfer options, and must return a
-    ``GuzzleHttp\Promise\PromiseInterface`` that is fulfilled with a
-    ``Psr7\Http\Message\ResponseInterface`` on success. ``handler`` is a
-    constructor only option that cannot be overridden in per/request options.
-
-``...``
-    (mixed) All other options passed to the constructor are used as default
-    request options with every request created by the client.
+.. contents:: Table of Contents
+.. section-numbering::
 
 
-Sending Requests
+Structural Elements
+===================
+
+Section Title
+-------------
+
+That's it, the text just above this line.
+
+Transitions
+-----------
+
+Here's a transition:
+
+---------
+
+It divides the section.
+
+Body Elements
+=============
+
+Paragraphs
+----------
+
+A paragraph.
+
+Inline Markup
+`````````````
+
+Paragraphs contain text and may contain inline markup: *emphasis*,
+**strong emphasis**, ``inline literals``, standalone hyperlinks
+(http://www.python.org), external hyperlinks (Python_), internal
+cross-references (example_), external hyperlinks with embedded URIs
+(`Python web site <http://www.python.org>`__), footnote references
+(manually numbered [1]_, anonymous auto-numbered [#]_, labeled
+auto-numbered [#label]_, or symbolic [*]_), citation references
+([CIT2002]_), substitution references (|example|), and _`inline
+hyperlink targets` (see Targets_ below for a reference back to here).
+Character-level inline markup is also possible (although exceedingly
+ugly!) in *re*\ ``Structured``\ *Text*.  Problems are indicated by
+|problematic| text (generated by processing errors; this one is
+intentional).
+
+The default role for interpreted text is `Title Reference`.  Here are
+some explicit interpreted text roles: a PEP reference (:PEP:`287`); an
+RFC reference (:RFC:`2822`); a :sub:`subscript`; a :sup:`superscript`;
+and explicit roles for :emphasis:`standard` :strong:`inline`
+:literal:`markup`.
+
+.. DO NOT RE-WRAP THE FOLLOWING PARAGRAPH!
+
+Let's test wrapping and whitespace significance in inline literals:
+``This is an example of --inline-literal --text, --including some--
+strangely--hyphenated-words.  Adjust-the-width-of-your-browser-window
+to see how the text is wrapped.  -- ---- --------  Now note    the
+spacing    between the    words of    this sentence    (words
+should    be grouped    in pairs).``
+
+If the ``--pep-references`` option was supplied, there should be a
+live link to PEP 258 here.
+
+Bullet Lists
+------------
+
+- A bullet list
+
+  + Nested bullet list.
+  + Nested item 2.
+
+- Item 2.
+
+  Paragraph 2 of item 2.
+
+  * Nested bullet list.
+  * Nested item 2.
+
+    - Third level.
+    - Item 2.
+
+  * Nested item 3.
+
+Enumerated Lists
 ----------------
 
-Magic methods on the client make it easy to send synchronous requests:
+1. Arabic numerals.
 
-.. code-block:: php
+   a) lower alpha)
 
-    $response = $client->get('http://httpbin.org/get');
-    $response = $client->delete('http://httpbin.org/delete');
-    $response = $client->head('http://httpbin.org/get');
-    $response = $client->options('http://httpbin.org/get');
-    $response = $client->patch('http://httpbin.org/patch');
-    $response = $client->post('http://httpbin.org/post');
-    $response = $client->put('http://httpbin.org/put');
+      (i) (lower roman)
 
-You can create a request and then send the request with the client when you're
-ready:
+          A. upper alpha.
 
-.. code-block:: php
+             I) upper roman)
 
-    use GuzzleHttp\Psr7\Request;
+2. Lists that don't start at 1:
 
-    $request = new Request('PUT', 'http://httpbin.org/put');
-    $response = $client->send($request, ['timeout' => 2]);
+   3. Three
 
-Client objects provide a great deal of flexibility in how request are
-transferred including default request options, default handler stack middleware
-that are used by each request, and a base URI that allows you to send requests
-with relative URIs.
+   4. Four
 
-You can find out more about client middleware in the
-:doc:`handlers-and-middleware` page of the documentation.
+   C. C
 
+   D. D
 
-Async Requests
+   iii. iii
+
+   iv. iv
+
+#. List items may also be auto-enumerated.
+
+Definition Lists
+----------------
+
+Term
+    Definition
+Term : classifier
+    Definition paragraph 1.
+
+    Definition paragraph 2.
+Term
+    Definition
+
+Field Lists
+-----------
+
+:what: Field lists map field names to field bodies, like database
+       records.  They are often part of an extension syntax.  They are
+       an unambiguous variant of RFC 2822 fields.
+
+:how arg1 arg2:
+
+    The field marker is a colon, the field name, and a colon.
+
+    The field body may contain one or more body elements, indented
+    relative to the field marker.
+
+Option Lists
+------------
+
+For listing command-line options:
+
+-a            command-line option "a"
+-b file       options can have arguments
+              and long descriptions
+--long        options can be long also
+--input=file  long options can also have
+              arguments
+
+--very-long-option
+              The description can also start on the next line.
+
+              The description may contain multiple body elements,
+              regardless of where it starts.
+
+-x, -y, -z    Multiple options are an "option group".
+-v, --verbose  Commonly-seen: short & long options.
+-1 file, --one=file, --two file
+              Multiple options with arguments.
+/V            DOS/VMS-style options too
+
+There must be at least two spaces between the option and the
+description.
+
+Literal Blocks
 --------------
 
-You can send asynchronous requests using the magic methods provided by a client:
+Literal blocks are indicated with a double-colon ("::") at the end of
+the preceding paragraph (over there ``-->``).  They can be indented::
 
-.. code-block:: php
+    if literal_block:
+        text = 'is left as-is'
+        spaces_and_linebreaks = 'are preserved'
+        markup_processing = None
 
-    $promise = $client->getAsync('http://httpbin.org/get');
-    $promise = $client->deleteAsync('http://httpbin.org/delete');
-    $promise = $client->headAsync('http://httpbin.org/get');
-    $promise = $client->optionsAsync('http://httpbin.org/get');
-    $promise = $client->patchAsync('http://httpbin.org/patch');
-    $promise = $client->postAsync('http://httpbin.org/post');
-    $promise = $client->putAsync('http://httpbin.org/put');
+Or they can be quoted without indentation::
 
-You can also use the `sendAsync()` and `requestAsync()` methods of a client:
+>> Great idea!
+>
+> Why didn't I think of that?
 
-.. code-block:: php
+Line Blocks
+-----------
 
-    use GuzzleHttp\Psr7\Request;
+| This is a line block.  It ends with a blank line.
+|     Each new line begins with a vertical bar ("|").
+|     Line breaks and initial indents are preserved.
+| Continuation lines are wrapped portions of long lines;
+  they begin with a space in place of the vertical bar.
+|     The left edge of a continuation line need not be aligned with
+  the left edge of the text above it.
 
-    // Create a PSR-7 request object to send
-    $headers = ['X-Foo' => 'Bar'];
-    $body = 'Hello!';
-    $request = new Request('HEAD', 'http://httpbin.org/head', $headers, $body);
+| This is a second line block.
+|
+| Blank lines are permitted internally, but they must begin with a "|".
 
-    // Or, if you don't need to pass in a request instance:
-    $promise = $client->requestAsync('GET', 'http://httpbin.org/get');
+Take it away, Eric the Orchestra Leader!
 
-The promise returned by these methods implements the
-`Promises/A+ spec <https://promisesaplus.com/>`_, provided by the
-`Guzzle promises library <https://github.com/guzzle/promises>`_. This means
-that you can chain ``then()`` calls off of the promise. These then calls are
-either fulfilled with a successful ``Psr\Http\Message\ResponseInterface`` or
-rejected with an exception.
+    | A one, two, a one two three four
+    |
+    | Half a bee, philosophically,
+    |     must, *ipso facto*, half not be.
+    | But half the bee has got to be,
+    |     *vis a vis* its entity.  D'you see?
+    |
+    | But can a bee be said to be
+    |     or not to be an entire bee,
+    |         when half the bee is not a bee,
+    |             due to some ancient injury?
+    |
+    | Singing...
 
-.. code-block:: php
+Block Quotes
+------------
 
-    use Psr\Http\Message\ResponseInterface;
-    use GuzzleHttp\Exception\RequestException;
+Block quotes consist of indented body elements:
 
-    $promise = $client->requestAsync('GET', 'http://httpbin.org/get');
-    $promise->then(
-        function (ResponseInterface $res) {
-            echo $res->getStatusCode() . "\n";
-        },
-        function (RequestException $e) {
-            echo $e->getMessage() . "\n";
-            echo $e->getRequest()->getMethod();
-        }
-    );
+    My theory by A. Elk.  Brackets Miss, brackets.  This theory goes
+    as follows and begins now.  All brontosauruses are thin at one
+    end, much much thicker in the middle and then thin again at the
+    far end.  That is my theory, it is mine, and belongs to me and I
+    own it, and what it is too.
 
+    -- Anne Elk (Miss)
 
-Concurrent requests
--------------------
+Doctest Blocks
+--------------
 
-You can send multiple requests concurrently using promises and asynchronous
-requests.
+>>> print 'Python-specific usage examples; begun with ">>>"'
+Python-specific usage examples; begun with ">>>"
+>>> print '(cut and pasted from interactive Python sessions)'
+(cut and pasted from interactive Python sessions)
 
-.. code-block:: php
+Tables
+------
 
-    use GuzzleHttp\Client;
-    use GuzzleHttp\Promise;
+Here's a grid table followed by a simple table:
 
-    $client = new Client(['base_uri' => 'http://httpbin.org/']);
++------------------------+------------+----------+----------+
+| Header row, column 1   | Header 2   | Header 3 | Header 4 |
+| (header rows optional) |            |          |          |
++========================+============+==========+==========+
+| body row 1, column 1   | column 2   | column 3 | column 4 |
++------------------------+------------+----------+----------+
+| body row 2             | Cells may span columns.          |
++------------------------+------------+---------------------+
+| body row 3             | Cells may  | - Table cells       |
++------------------------+ span rows. | - contain           |
+| body row 4             |            | - body elements.    |
++------------------------+------------+----------+----------+
+| body row 5             | Cells may also be     |          |
+|                        | empty: ``-->``        |          |
++------------------------+-----------------------+----------+
 
-    // Initiate each request but do not block
-    $promises = [
-        'image' => $client->getAsync('/image'),
-        'png'   => $client->getAsync('/image/png'),
-        'jpeg'  => $client->getAsync('/image/jpeg'),
-        'webp'  => $client->getAsync('/image/webp')
-    ];
+=====  =====  ======
+   Inputs     Output
+------------  ------
+  A      B    A or B
+=====  =====  ======
+False  False  False
+True   False  True
+False  True   True
+True   True   True
+=====  =====  ======
 
-    // Wait on all of the requests to complete. Throws a ConnectException
-    // if any of the requests fail
-    $results = Promise\unwrap($promises);
+Footnotes
+---------
 
-    // Wait for the requests to complete, even if some of them fail
-    $results = Promise\settle($promises)->wait();
+.. [1] A footnote contains body elements, consistently indented by at
+   least 3 spaces.
 
-    // You can access each result using the key provided to the unwrap
-    // function.
-    echo $results['image']->getHeader('Content-Length');
-    echo $results['png']->getHeader('Content-Length');
+   This is the footnote's second paragraph.
 
-You can use the ``GuzzleHttp\Pool`` object when you have an indeterminate
-amount of requests you wish to send.
+.. [#label] Footnotes may be numbered, either manually (as in [1]_) or
+   automatically using a "#"-prefixed label.  This footnote has a
+   label so it can be referred to from multiple places, both as a
+   footnote reference ([#label]_) and as a hyperlink reference
+   (label_).
 
-.. code-block:: php
+.. [#] This footnote is numbered automatically and anonymously using a
+   label of "#" only.
 
-    use GuzzleHttp\Pool;
-    use GuzzleHttp\Client;
-    use GuzzleHttp\Psr7\Request;
+.. [*] Footnotes may also use symbols, specified with a "*" label.
+   Here's a reference to the next footnote: [*]_.
 
-    $client = new Client();
+.. [*] This footnote shows the next symbol in the sequence.
 
-    $requests = function ($total) {
-        $uri = 'http://127.0.0.1:8126/guzzle-server/perf';
-        for ($i = 0; $i < $total; $i++) {
-            yield new Request('GET', $uri);
-        }
-    };
+.. [4] Here's an unreferenced footnote, with a reference to a
+   nonexistent footnote: [5]_.
 
-    $pool = new Pool($client, $requests(100), [
-        'concurrency' => 5,
-        'fulfilled' => function ($response, $index) {
-            // this is delivered each successful response
-        },
-        'rejected' => function ($reason, $index) {
-            // this is delivered each failed request
-        },
-    ]);
+Citations
+---------
 
-    // Initiate the transfers and create a promise
-    $promise = $pool->promise();
+.. [CIT2002] Citations are text-labeled footnotes. They may be
+   rendered separately and differently from footnotes.
 
-    // Force the pool of requests to complete.
-    $promise->wait();
+Here's a reference to the above, [CIT2002]_, and a [nonexistent]_
+citation.
 
-Or using a closure that will return a promise once the pool calls the closure.
+Targets
+-------
 
-.. code-block:: php
+.. _example:
 
-    $client = new Client();
+This paragraph is pointed to by the explicit "example" target. A
+reference can be found under `Inline Markup`_, above. `Inline
+hyperlink targets`_ are also possible.
 
-    $requests = function ($total) use ($client) {
-        $uri = 'http://127.0.0.1:8126/guzzle-server/perf';
-        for ($i = 0; $i < $total; $i++) {
-            yield function() use ($client, $uri) {
-                return $client->getAsync($uri);
-            };
-        }
-    };
+Section headers are implicit targets, referred to by name. See
+Targets_, which is a subsection of `Body Elements`_.
 
-    $pool = new Pool($client, $requests(100));
+Explicit external targets are interpolated into references such as
+"Python_".
 
+.. _Python: http://www.python.org/
 
-Using Responses
-===============
+Targets may be indirect and anonymous.  Thus `this phrase`__ may also
+refer to the Targets_ section.
 
-In the previous examples, we retrieved a ``$response`` variable or we were
-delivered a response from a promise. The response object implements a PSR-7
-response, ``Psr\Http\Message\ResponseInterface``, and contains lots of
-helpful information.
+__ Targets_
 
-You can get the status code and reason phrase of the response:
+Here's a `hyperlink reference without a target`_, which generates an
+error.
 
-.. code-block:: php
+Duplicate Target Names
+``````````````````````
 
-    $code = $response->getStatusCode(); // 200
-    $reason = $response->getReasonPhrase(); // OK
+Duplicate names in section headers or other implicit targets will
+generate "info" (level-1) system messages.  Duplicate names in
+explicit targets will generate "warning" (level-2) system messages.
 
-You can retrieve headers from the response:
+Duplicate Target Names
+``````````````````````
 
-.. code-block:: php
+Since there are two "Duplicate Target Names" section headers, we
+cannot uniquely refer to either of them by name.  If we try to (like
+this: `Duplicate Target Names`_), an error is generated.
 
-    // Check if a header exists.
-    if ($response->hasHeader('Content-Length')) {
-        echo "It exists";
-    }
+Directives
+----------
 
-    // Get a header from the response.
-    echo $response->getHeader('Content-Length');
+.. contents:: :local:
 
-    // Get all of the response headers.
-    foreach ($response->getHeaders() as $name => $values) {
-        echo $name . ': ' . implode(', ', $values) . "\r\n";
-    }
+These are just a sample of the many reStructuredText Directives.  For
+others, please see
+http://docutils.sourceforge.net/docs/ref/rst/directives.html.
 
-The body of a response can be retrieved using the ``getBody`` method. The body
-can be used as a string, cast to a string, or used as a stream like object.
+Document Parts
+``````````````
 
-.. code-block:: php
+An example of the "contents" directive can be seen above this section
+(a local, untitled table of contents_) and at the beginning of the
+document (a document-wide `table of contents`_).
 
-    $body = $response->getBody();
-    // Implicitly cast the body to a string and echo it
-    echo $body;
-    // Explicitly cast the body to a string
-    $stringBody = (string) $body;
-    // Read 10 bytes from the body
-    $tenBytes = $body->read(10);
-    // Read the remaining contents of the body as a string
-    $remainingBytes = $body->getContents();
+Images
+``````
 
+An image directive (also clickable -- a hyperlink reference):
 
-Query String Parameters
-=======================
+.. image:: images/title.png
+   :target: directives_
 
-You can provide query string parameters with a request in several ways.
+A figure directive:
 
-You can set query string parameters in the request's URI:
+.. figure:: images/title.png
+   :alt: reStructuredText, the markup syntax
 
-.. code-block:: php
+   A figure is an image with a caption and/or a legend:
 
-    $response = $client->request('GET', 'http://httpbin.org?foo=bar');
+   +------------+-----------------------------------------------+
+   | re         | Revised, revisited, based on 're' module.     |
+   +------------+-----------------------------------------------+
+   | Structured | Structure-enhanced text, structuredtext.      |
+   +------------+-----------------------------------------------+
+   | Text       | Well it is, isn't it?                         |
+   +------------+-----------------------------------------------+
 
-You can specify the query string parameters using the ``query`` request
-option as an array.
+   This paragraph is also part of the legend.
 
-.. code-block:: php
+Admonitions
+```````````
 
-    $client->request('GET', 'http://httpbin.org', [
-        'query' => ['foo' => 'bar']
-    ]);
+.. Attention:: Directives at large.
 
-Providing the option as an array will use PHP's ``http_build_query`` function
-to format the query string.
+.. Caution::
 
-And finally, you can provide the ``query`` request option as a string.
+   Don't take any wooden nickels.
 
-.. code-block:: php
+.. DANGER:: Mad scientist at work!
 
-    $client->request('GET', 'http://httpbin.org', ['query' => 'foo=bar']);
+.. Error:: Does not compute.
 
+.. Hint:: It's bigger than a bread box.
 
-Uploading Data
+.. Important::
+   - Wash behind your ears.
+   - Clean up your room.
+   - Call your mother.
+   - Back up your data.
+
+.. Note:: This is a note.
+
+.. Tip:: 15% if the service is good.
+
+.. WARNING:: Strong prose may provoke extreme mental exertion.
+   Reader discretion is strongly advised.
+
+.. admonition:: And, by the way...
+
+   You can make up your own admonition too.
+
+Topics, Sidebars, and Rubrics
+`````````````````````````````
+
+.. sidebar:: Sidebar Title
+   :subtitle: Optional Subtitle
+
+   This is a sidebar.  It is for text outside the flow of the main
+   text.
+
+   .. rubric:: This is a rubric inside a sidebar
+
+   Sidebars often appears beside the main text with a border and
+   background color.
+
+.. topic:: Topic Title
+
+   This is a topic.
+
+.. rubric:: This is a rubric
+
+Target Footnotes
+````````````````
+
+.. target-notes::
+
+Replacement Text
+````````````````
+
+I recommend you try |Python|_.
+
+.. |Python| replace:: Python, *the* best language around
+
+Compound Paragraph
+``````````````````
+
+.. compound::
+
+   This paragraph contains a literal block::
+
+       Connecting... OK
+       Transmitting data... OK
+       Disconnecting... OK
+
+   and thus consists of a simple paragraph, a literal block, and
+   another simple paragraph.  Nonetheless it is semantically *one*
+   paragraph.
+
+This construct is called a *compound paragraph* and can be produced
+with the "compound" directive.
+
+Substitution Definitions
+------------------------
+
+An inline image (|example|) example:
+
+.. |EXAMPLE| image:: images/biohazard.png
+
+(Substitution definitions are not visible in the HTML source.)
+
+Comments
+--------
+
+Here's one:
+
+.. Comments begin with two dots and a space. Anything may
+   follow, except for the syntax of footnotes, hyperlink
+   targets, directives, or substitution definitions.
+
+   Double-dashes -- "--" -- must be escaped somehow in HTML output.
+
+(View the HTML source to see the comment.)
+
+Error Handling
 ==============
 
-Guzzle provides several methods for uploading data.
+Any errors caught during processing will generate system messages.
 
-You can send requests that contain a stream of data by passing a string,
-resource returned from ``fopen``, or an instance of a
-``Psr\Http\Message\StreamInterface`` to the ``body`` request option.
+|*** Expect 6 errors (including this one). ***|
 
-.. code-block:: php
+There should be six messages in the following, auto-generated
+section, "Docutils System Messages":
 
-    // Provide the body as a string.
-    $r = $client->request('POST', 'http://httpbin.org/post', [
-        'body' => 'raw data'
-    ]);
-
-    // Provide an fopen resource.
-    $body = fopen('/path/to/file', 'r');
-    $r = $client->request('POST', 'http://httpbin.org/post', ['body' => $body]);
-
-    // Use the stream_for() function to create a PSR-7 stream.
-    $body = \GuzzleHttp\Psr7\stream_for('hello!');
-    $r = $client->request('POST', 'http://httpbin.org/post', ['body' => $body]);
-
-An easy way to upload JSON data and set the appropriate header is using the
-``json`` request option:
-
-.. code-block:: php
-
-    $r = $client->request('PUT', 'http://httpbin.org/put', [
-        'json' => ['foo' => 'bar']
-    ]);
-
-
-POST/Form Requests
-------------------
-
-In addition to specifying the raw data of a request using the ``body`` request
-option, Guzzle provides helpful abstractions over sending POST data.
-
-
-Sending form fields
-~~~~~~~~~~~~~~~~~~~
-
-Sending ``application/x-www-form-urlencoded`` POST requests requires that you
-specify the POST fields as an array in the ``form_params`` request options.
-
-.. code-block:: php
-
-    $response = $client->request('POST', 'http://httpbin.org/post', [
-        'form_params' => [
-            'field_name' => 'abc',
-            'other_field' => '123',
-            'nested_field' => [
-                'nested' => 'hello'
-            ]
-        ]
-    ]);
-
-
-Sending form files
-~~~~~~~~~~~~~~~~~~
-
-You can send files along with a form (``multipart/form-data`` POST requests),
-using the ``multipart`` request option. ``multipart`` accepts an array of
-associative arrays, where each associative array contains the following keys:
-
-- name: (required, string) key mapping to the form field name.
-- contents: (required, mixed) Provide a string to send the contents of the
-  file as a string, provide an fopen resource to stream the contents from a
-  PHP stream, or provide a ``Psr\Http\Message\StreamInterface`` to stream
-  the contents from a PSR-7 stream.
-
-.. code-block:: php
-
-    $response = $client->request('POST', 'http://httpbin.org/post', [
-        'multipart' => [
-            [
-                'name'     => 'field_name',
-                'contents' => 'abc'
-            ],
-            [
-                'name'     => 'file_name',
-                'contents' => fopen('/path/to/file', 'r')
-            ],
-            [
-                'name'     => 'other_file',
-                'contents' => 'hello',
-                'filename' => 'filename.txt',
-                'headers'  => [
-                    'X-Foo' => 'this is an extra header to include'
-                ]
-            ]
-        ]
-    ]);
-
-
-Cookies
-=======
-
-Guzzle can maintain a cookie session for you if instructed using the
-``cookies`` request option. When sending a request, the ``cookies`` option
-must be set an an instance of ``GuzzleHttp\Cookie\CookieJarInterface``.
-
-.. code-block:: php
-
-    // Use a specific cookie jar
-    $jar = new \GuzzleHttp\Cookie\CookieJar;
-    $r = $client->request('GET', 'http://httpbin.org/cookies', [
-        'cookies' => $jar
-    ]);
-
-You can set ``cookies`` to ``true`` in a client constructor if you would like
-to use a shared cookie jar for all requests.
-
-.. code-block:: php
-
-    // Use a shared client cookie jar
-    $client = new \GuzzleHttp\Client(['cookies' => true]);
-    $r = $client->request('GET', 'http://httpbin.org/cookies');
-
-
-Redirects
-=========
-
-Guzzle will automatically follow redirects unless you tell it not to. You can
-customize the redirect behavior using the ``allow_redirects`` request option.
-
-- Set to ``true`` to enable normal redirects with a maximum number of 5
-  redirects. This is the default setting.
-- Set to ``false`` to disable redirects.
-- Pass an associative array containing the 'max' key to specify the maximum
-  number of redirects and optionally provide a 'strict' key value to specify
-  whether or not to use strict RFC compliant redirects (meaning redirect POST
-  requests with POST requests vs. doing what most browsers do which is
-  redirect POST requests with GET requests).
-
-.. code-block:: php
-
-    $response = $client->request('GET', 'http://github.com');
-    echo $response->getStatusCode();
-    // 200
-
-The following example shows that redirects can be disabled.
-
-.. code-block:: php
-
-    $response = $client->request('GET', 'http://github.com', [
-        'allow_redirects' => false
-    ]);
-    echo $response->getStatusCode();
-    // 301
-
-
-Exceptions
-==========
-
-Guzzle throws exceptions for errors that occur during a transfer.
-
-- In the event of a networking error (connection timeout, DNS errors, etc.),
-  a ``GuzzleHttp\Exception\RequestException`` is thrown. This exception
-  extends from ``GuzzleHttp\Exception\TransferException``. Catching this
-  exception will catch any exception that can be thrown while transferring
-  requests.
-
-  .. code-block:: php
-
-      use GuzzleHttp\Psr7;
-      use GuzzleHttp\Exception\RequestException;
-
-      try {
-          $client->request('GET', 'https://github.com/_abc_123_404');
-      } catch (RequestException $e) {
-          echo Psr7\str($e->getRequest());
-          if ($e->hasResponse()) {
-              echo Psr7\str($e->getResponse());
-          }
-      }
-
-- A ``GuzzleHttp\Exception\ConnectException`` exception is thrown in the
-  event of a networking error. This exception extends from
-  ``GuzzleHttp\Exception\RequestException``.
-
-- A ``GuzzleHttp\Exception\ClientException`` is thrown for 400
-  level errors if the ``http_errors`` request option is set to true. This
-  exception extends from ``GuzzleHttp\Exception\BadResponseException`` and
-  ``GuzzleHttp\Exception\BadResponseException`` extends from
-  ``GuzzleHttp\Exception\RequestException``.
-
-  .. code-block:: php
-
-      use GuzzleHttp\Exception\ClientException;
-
-      try {
-          $client->request('GET', 'https://github.com/_abc_123_404');
-      } catch (ClientException $e) {
-          echo Psr7\str($e->getRequest());
-          echo Psr7\str($e->getResponse());
-      }
-
-- A ``GuzzleHttp\Exception\ServerException`` is thrown for 500 level
-  errors if the ``http_errors`` request option is set to true. This
-  exception extends from ``GuzzleHttp\Exception\BadResponseException``.
-
-- A ``GuzzleHttp\Exception\TooManyRedirectsException`` is thrown when too
-  many redirects are followed. This exception extends from ``GuzzleHttp\Exception\RequestException``.
-
-All of the above exceptions extend from
-``GuzzleHttp\Exception\TransferException``.
-
-
-Environment Variables
-=====================
-
-Guzzle exposes a few environment variables that can be used to customize the
-behavior of the library.
-
-``GUZZLE_CURL_SELECT_TIMEOUT``
-    Controls the duration in seconds that a curl_multi_* handler will use when
-    selecting on curl handles using ``curl_multi_select()``. Some systems
-    have issues with PHP's implementation of ``curl_multi_select()`` where
-    calling this function always results in waiting for the maximum duration of
-    the timeout.
-``HTTP_PROXY``
-    Defines the proxy to use when sending requests using the "http" protocol.
-``HTTPS_PROXY``
-    Defines the proxy to use when sending requests using the "https" protocol.
-
-
-Relevant ini Settings
----------------------
-
-Guzzle can utilize PHP ini settings when configuring clients.
-
-``openssl.cafile``
-    Specifies the path on disk to a CA file in PEM format to use when sending
-    requests over "https". See: https://wiki.php.net/rfc/tls-peer-verification#phpini_defaults
+.. section should be added by Docutils automatically
