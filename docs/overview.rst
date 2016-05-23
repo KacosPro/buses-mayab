@@ -5,17 +5,7 @@ Overview
 Requirements
 ============
 
-#. PHP 5.5.0
-#. To use the PHP stream handler, ``allow_url_fopen`` must be enabled in your
-   system's php.ini.
-#. To use the cURL handler, you must have a recent version of cURL >= 7.19.4
-   compiled with OpenSSL and zlib.
-
-.. note::
-
-    Guzzle no longer requires cURL in order to send HTTP requests. Guzzle will
-    use the PHP stream wrapper to send HTTP requests if cURL is not installed.
-    Alternatively, you can provide your own HTTP handler used to send requests.
+#. PHP 7
 
 .. _installation:
 
@@ -23,7 +13,6 @@ Requirements
 Installation
 ============
 
-The recommended way to install Guzzle is with
 `Composer <http://getcomposer.org>`_. Composer is a dependency management tool
 for PHP that allows you to declare the dependencies your project needs and
 installs them into your project.
@@ -37,42 +26,7 @@ You can add Guzzle as a dependency using the composer.phar CLI:
 
 .. code-block:: bash
 
-    php composer.phar require guzzlehttp/guzzle:~6.0
-
-Alternatively, you can specify Guzzle as a dependency in your project's
-existing composer.json file:
-
-.. code-block:: js
-
-    {
-      "require": {
-         "guzzlehttp/guzzle": "~6.0"
-      }
-   }
-
-After installing, you need to require Composer's autoloader:
-
-.. code-block:: php
-
-    require 'vendor/autoload.php';
-
-You can find out more on how to install Composer, configure autoloading, and
-other best-practices for defining dependencies at `getcomposer.org <http://getcomposer.org>`_.
-
-
-Bleeding edge
--------------
-
-During your development, you can keep up with the latest changes on the master
-branch by setting the version requirement for Guzzle to ``~6.0@dev``.
-
-.. code-block:: js
-
-   {
-      "require": {
-         "guzzlehttp/guzzle": "~6.0@dev"
-      }
-   }
+    php composer.phar install
 
 
 License
@@ -108,52 +62,11 @@ Contributing
 Guidelines
 ----------
 
-1. Guzzle utilizes PSR-1, PSR-2, PSR-4, and PSR-7.
-2. Guzzle is meant to be lean and fast with very few dependencies. This means
-   that not every feature request will be accepted.
-3. Guzzle has a minimum PHP version requirement of PHP 5.5. Pull requests must
-   not require a PHP version greater than PHP 5.5 unless the feature is only
-   utilized conditionally.
-4. All pull requests must include unit tests to ensure the change works as
-   expected and to prevent regressions.
-
-
-Running the tests
------------------
-
-In order to contribute, you'll need to checkout the source from GitHub and
-install Guzzle's dependencies using Composer:
-
-.. code-block:: bash
-
-    git clone https://github.com/guzzle/guzzle.git
-    cd guzzle && curl -s http://getcomposer.org/installer | php && ./composer.phar install --dev
-
-Guzzle is unit tested with PHPUnit. Run the tests using the Makefile:
-
-.. code-block:: bash
-
-    make test
-
-.. note::
-
-    You'll need to install node.js v0.5.0 or newer in order to perform
-    integration tests on Guzzle's HTTP handlers.
+1. Please be nice
 
 
 Reporting a security vulnerability
 ==================================
-
-We want to ensure that Guzzle is a secure HTTP client library for everyone. If
-you've discovered a security vulnerability in Guzzle, we appreciate your help
-in disclosing it to us in a `responsible manner <http://en.wikipedia.org/wiki/Responsible_disclosure>`_.
-
-Publicly disclosing a vulnerability can put the entire community at risk. If
-you've discovered a security concern, please email us at
-security@guzzlephp.org. We'll work with you to make sure that we understand the
-scope of the issue, and that we fully address your concern. We consider
-correspondence sent to security@guzzlephp.org our highest priority, and work to
-address any issues that arise as quickly as possible.
 
 After a security vulnerability has been corrected, a security hotfix release will
 be deployed as soon as possible.
