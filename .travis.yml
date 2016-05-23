@@ -8,6 +8,8 @@ php:
 before_script:
   - sh -c "composer require 'cakephp/cakephp-codesniffer:dev-master'"
   - vendor/bin/phpunit tests/TestCase/Controller/RoutesControllerTest.php
+  - vendor/bin/phpunit tests/TestCase/Controller/UsersControllerTest.php
+
   - composer install
   - phpenv rehash
 
