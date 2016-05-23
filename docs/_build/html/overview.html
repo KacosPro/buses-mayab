@@ -31,7 +31,7 @@
 
   
     <link rel="top" title="buses mayab 2.0 documentation" href="index.html"/>
-        <link rel="next" title="Quickstart" href="quickstart.html"/>
+        <link rel="next" title="1   reStructuredText Demonstration" href="quickstart.html"/>
         <link rel="prev" title="Welcome to buses mayab’s documentation!" href="index.html"/> 
 
   
@@ -93,7 +93,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#reporting-a-security-vulnerability">Reporting a security vulnerability</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">1&nbsp;&nbsp;&nbsp;reStructuredText Demonstration</a></li>
 </ul>
 
             
@@ -143,22 +143,32 @@
 <div class="section" id="requirements">
 <h2>Requirements<a class="headerlink" href="#requirements" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
-<li>PHP 7</li>
+<li>PHP &gt; 5.6</li>
+<li>MYSQL</li>
 </ol>
 </div>
 <div class="section" id="installation">
 <span id="id1"></span><h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
-<p><a class="reference external" href="http://getcomposer.org">Composer</a>. Composer is a dependency management tool
-for PHP that allows you to declare the dependencies your project needs and
-installs them into your project.</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="c1"># Install Composer</span>
-curl -sS https://getcomposer.org/installer <span class="p">|</span> php
-</pre></div>
-</div>
-<p>You can add Guzzle as a dependency using the composer.phar CLI:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>php composer.phar install
-</pre></div>
-</div>
+<ol class="arabic simple">
+<li>Download [Composer](<a class="reference external" href="http://getcomposer.org/doc/00-intro.md">http://getcomposer.org/doc/00-intro.md</a>) or update <cite>composer self-update</cite>.</li>
+<li>Run <cite>php composer.phar install</cite>.</li>
+</ol>
+<p>If Composer is installed globally, run
+<code class="docutils literal"><span class="pre">`bash</span>
+<span class="pre">composer</span> <span class="pre">install</span>
+<span class="pre">`</span></code></p>
+<p>You should now be able to visit the path to where you installed the app and see
+the setup traffic lights.</p>
+<p>## Configuration</p>
+<p>Read and edit <cite>config/app.php</cite> and setup the &#8216;Datasources&#8217; and any other
+configuration relevant for your application.</p>
+<p>Set up the database skeleton, run
+<code class="docutils literal"><span class="pre">`bash</span>
+<span class="pre">/path/to/project/bin/cake</span> <span class="pre">migrations</span> <span class="pre">migrate</span>
+<span class="pre">`</span></code></p>
+<p>Seed the database, run
+<a href="#id2"><span class="problematic" id="id3">``</span></a><a href="#id4"><span class="problematic" id="id5">`</span></a>bash
+/path/to/project/bin/cake migrations seed</p>
 </div>
 <div class="section" id="license">
 <h2>License<a class="headerlink" href="#license" title="Permalink to this headline">¶</a></h2>
@@ -205,7 +215,7 @@ be deployed as soon as possible.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="quickstart.html" class="btn btn-neutral float-right" title="Quickstart" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="quickstart.html" class="btn btn-neutral float-right" title="1   reStructuredText Demonstration" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="index.html" class="btn btn-neutral" title="Welcome to buses mayab’s documentation!" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>

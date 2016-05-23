@@ -5,7 +5,8 @@ Overview
 Requirements
 ============
 
-#. PHP 7
+#. PHP > 5.6
+#. MYSQL
 
 .. _installation:
 
@@ -13,20 +14,30 @@ Requirements
 Installation
 ============
 
-`Composer <http://getcomposer.org>`_. Composer is a dependency management tool
-for PHP that allows you to declare the dependencies your project needs and
-installs them into your project.
+1. Download [Composer](http://getcomposer.org/doc/00-intro.md) or update `composer self-update`.
+2. Run `php composer.phar install`.
 
-.. code-block:: bash
+If Composer is installed globally, run
+```bash
+composer install
+```
 
-    # Install Composer
-    curl -sS https://getcomposer.org/installer | php
+You should now be able to visit the path to where you installed the app and see
+the setup traffic lights.
 
-You can add Guzzle as a dependency using the composer.phar CLI:
+## Configuration
 
-.. code-block:: bash
+Read and edit `config/app.php` and setup the 'Datasources' and any other
+configuration relevant for your application.
 
-    php composer.phar install
+Set up the database skeleton, run
+```bash
+/path/to/project/bin/cake migrations migrate
+```
+
+Seed the database, run
+```bash
+/path/to/project/bin/cake migrations seed
 
 
 License
