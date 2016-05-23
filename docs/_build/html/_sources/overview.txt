@@ -26,7 +26,8 @@ If Composer is installed globally, run
 You should now be able to visit the path to where you installed the app and see
 the setup traffic lights.
 
-## Configuration
+Configuration
+===============
 
 Read and edit `config/app.php` and setup the 'Datasources' and any other
 configuration relevant for your application.
