@@ -298,4 +298,11 @@ lexers["php"] = PhpLexer(startinline=True, linenos=1)
 lexers["php-annotations"] = PhpLexer(startinline=True, linenos=1)
 primary_domain = "php"
 
-
+html_context = {
+  "display_github": True,
+  "github_user": "user",
+  "github_repo": project,
+  "github_version": "master",
+  "conf_py_path": "/doc/",
+  "source_suffix": source_suffix,
+}
