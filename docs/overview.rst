@@ -18,9 +18,10 @@ Installation
 2. Run `php composer.phar install`.
 
 If Composer is installed globally, run
-```bash
-composer install
-```
+.. code-block:: bash
+
+    composer install
+
 
 You should now be able to visit the path to where you installed the app and see
 the setup traffic lights.
@@ -31,13 +32,15 @@ Read and edit `config/app.php` and setup the 'Datasources' and any other
 configuration relevant for your application.
 
 Set up the database skeleton, run
-```bash
-/path/to/project/bin/cake migrations migrate
-```
+.. code-block:: bash
+
+    /path/to/project/bin/cake migrations migrate
+
 
 Seed the database, run
-```bash
-/path/to/project/bin/cake migrations seed
+.. code-block:: bash
+
+    /path/to/project/bin/cake migrations seed
 
 
 License
