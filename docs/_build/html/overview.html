@@ -84,14 +84,10 @@
                 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Overview</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#requirements">Requirements</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#installation">Installation</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#bleeding-edge">Bleeding edge</a></li>
-</ul>
-</li>
+<li class="toctree-l2"><a class="reference internal" href="#installation">Installation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#license">License</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#contributing">Contributing</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#guidelines">Guidelines</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#running-the-tests">Running the tests</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#reporting-a-security-vulnerability">Reporting a security vulnerability</a></li>
@@ -147,23 +143,12 @@
 <div class="section" id="requirements">
 <h2>Requirements<a class="headerlink" href="#requirements" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
-<li>PHP 5.5.0</li>
-<li>To use the PHP stream handler, <code class="docutils literal"><span class="pre">allow_url_fopen</span></code> must be enabled in your
-system&#8217;s php.ini.</li>
-<li>To use the cURL handler, you must have a recent version of cURL &gt;= 7.19.4
-compiled with OpenSSL and zlib.</li>
+<li>PHP 7</li>
 </ol>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">Guzzle no longer requires cURL in order to send HTTP requests. Guzzle will
-use the PHP stream wrapper to send HTTP requests if cURL is not installed.
-Alternatively, you can provide your own HTTP handler used to send requests.</p>
-</div>
 </div>
 <div class="section" id="installation">
 <span id="id1"></span><h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
-<p>The recommended way to install Guzzle is with
-<a class="reference external" href="http://getcomposer.org">Composer</a>. Composer is a dependency management tool
+<p><a class="reference external" href="http://getcomposer.org">Composer</a>. Composer is a dependency management tool
 for PHP that allows you to declare the dependencies your project needs and
 installs them into your project.</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span><span class="c1"># Install Composer</span>
@@ -171,35 +156,8 @@ curl -sS https://getcomposer.org/installer <span class="p">|</span> php
 </pre></div>
 </div>
 <p>You can add Guzzle as a dependency using the composer.phar CLI:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>php composer.phar require guzzlehttp/guzzle:~6.0
+<div class="highlight-bash"><div class="highlight"><pre><span></span>php composer.phar install
 </pre></div>
-</div>
-<p>Alternatively, you can specify Guzzle as a dependency in your project&#8217;s
-existing composer.json file:</p>
-<div class="highlight-js"><div class="highlight"><pre><span></span> <span class="p">{</span>
-   <span class="s2">&quot;require&quot;</span><span class="o">:</span> <span class="p">{</span>
-      <span class="s2">&quot;guzzlehttp/guzzle&quot;</span><span class="o">:</span> <span class="s2">&quot;~6.0&quot;</span>
-   <span class="p">}</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-<p>After installing, you need to require Composer&#8217;s autoloader:</p>
-<div class="highlight-php"><div class="highlight"><pre><span></span><span class="k">require</span> <span class="s1">&#39;vendor/autoload.php&#39;</span><span class="p">;</span>
-</pre></div>
-</div>
-<p>You can find out more on how to install Composer, configure autoloading, and
-other best-practices for defining dependencies at <a class="reference external" href="http://getcomposer.org">getcomposer.org</a>.</p>
-<div class="section" id="bleeding-edge">
-<h3>Bleeding edge<a class="headerlink" href="#bleeding-edge" title="Permalink to this headline">¶</a></h3>
-<p>During your development, you can keep up with the latest changes on the master
-branch by setting the version requirement for Guzzle to <code class="docutils literal"><span class="pre">~6.0&#64;dev</span></code>.</p>
-<div class="highlight-js"><div class="highlight"><pre><span></span><span class="p">{</span>
-   <span class="s2">&quot;require&quot;</span><span class="o">:</span> <span class="p">{</span>
-      <span class="s2">&quot;guzzlehttp/guzzle&quot;</span><span class="o">:</span> <span class="s2">&quot;~6.0@dev&quot;</span>
-   <span class="p">}</span>
-<span class="p">}</span>
-</pre></div>
-</div>
 </div>
 </div>
 <div class="section" id="license">
@@ -229,46 +187,12 @@ THE SOFTWARE.</p>
 <div class="section" id="guidelines">
 <h3>Guidelines<a class="headerlink" href="#guidelines" title="Permalink to this headline">¶</a></h3>
 <ol class="arabic simple">
-<li>Guzzle utilizes PSR-1, PSR-2, PSR-4, and PSR-7.</li>
-<li>Guzzle is meant to be lean and fast with very few dependencies. This means
-that not every feature request will be accepted.</li>
-<li>Guzzle has a minimum PHP version requirement of PHP 5.5. Pull requests must
-not require a PHP version greater than PHP 5.5 unless the feature is only
-utilized conditionally.</li>
-<li>All pull requests must include unit tests to ensure the change works as
-expected and to prevent regressions.</li>
+<li>Please be nice</li>
 </ol>
-</div>
-<div class="section" id="running-the-tests">
-<h3>Running the tests<a class="headerlink" href="#running-the-tests" title="Permalink to this headline">¶</a></h3>
-<p>In order to contribute, you&#8217;ll need to checkout the source from GitHub and
-install Guzzle&#8217;s dependencies using Composer:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>git clone https://github.com/guzzle/guzzle.git
-<span class="nb">cd</span> guzzle <span class="o">&amp;&amp;</span> curl -s http://getcomposer.org/installer <span class="p">|</span> php <span class="o">&amp;&amp;</span> ./composer.phar install --dev
-</pre></div>
-</div>
-<p>Guzzle is unit tested with PHPUnit. Run the tests using the Makefile:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>make <span class="nb">test</span>
-</pre></div>
-</div>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">You&#8217;ll need to install node.js v0.5.0 or newer in order to perform
-integration tests on Guzzle&#8217;s HTTP handlers.</p>
-</div>
 </div>
 </div>
 <div class="section" id="reporting-a-security-vulnerability">
 <h2>Reporting a security vulnerability<a class="headerlink" href="#reporting-a-security-vulnerability" title="Permalink to this headline">¶</a></h2>
-<p>We want to ensure that Guzzle is a secure HTTP client library for everyone. If
-you&#8217;ve discovered a security vulnerability in Guzzle, we appreciate your help
-in disclosing it to us in a <a class="reference external" href="http://en.wikipedia.org/wiki/Responsible_disclosure">responsible manner</a>.</p>
-<p>Publicly disclosing a vulnerability can put the entire community at risk. If
-you&#8217;ve discovered a security concern, please email us at
-<a class="reference external" href="mailto:security&#37;&#52;&#48;guzzlephp&#46;org">security<span>&#64;</span>guzzlephp<span>&#46;</span>org</a>. We&#8217;ll work with you to make sure that we understand the
-scope of the issue, and that we fully address your concern. We consider
-correspondence sent to <a class="reference external" href="mailto:security&#37;&#52;&#48;guzzlephp&#46;org">security<span>&#64;</span>guzzlephp<span>&#46;</span>org</a> our highest priority, and work to
-address any issues that arise as quickly as possible.</p>
 <p>After a security vulnerability has been corrected, a security hotfix release will
 be deployed as soon as possible.</p>
 </div>
