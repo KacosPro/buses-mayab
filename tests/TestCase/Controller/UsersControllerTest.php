@@ -50,7 +50,6 @@ class UsersControllerTest extends IntegrationTestCase
 
     public function testEdit()
     {
-
         $this->get('/users/edit/130a5222-52b7-41f3-9542-b8e326490dfb');
 
         $newData = [
