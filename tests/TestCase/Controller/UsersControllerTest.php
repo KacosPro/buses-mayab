@@ -29,13 +29,13 @@ class UsersControllerTest extends IntegrationTestCase
         $this->assertResponseOk();
 
         $data = [
-        'id' => '130a5222-52b7-41f3-9542-b8e326490dfb',
+        'id' => '230a5222-52b7-41f3-9542-b8e326490dfb',
         'username' => 'ken.kitchen',
         'password' => 'qwerty',
         'confirmPassword' => 'qwerty',
         'name' => 'name',
         'lastname' => 'lastname',
-        'email' => 'a@b.com',
+        'email' => 'c@b.com',
         'created' => time(),
         'modified' => time()
         ];
@@ -50,24 +50,6 @@ class UsersControllerTest extends IntegrationTestCase
 
     public function testEdit()
     {
-        $this->get('/users/add');
-
-        $this->assertResponseOk();
-
-        $data = [
-        'id' => '130a5222-52b7-41f3-9542-b8e326490dfb',
-        'username' => 'ken.kitchen',
-        'password' => 'qwerty',
-        'confirmPassword' => 'qwerty',
-        'name' => 'name',
-        'lastname' => 'lastname',
-        'email' => 'a@b.com',
-        'created' => time(),
-        'modified' => time()
-        ];
-        $this->post('/users/add', $data);
-
-        $this->assertResponseSuccess();
 
         $this->get('/users/edit/130a5222-52b7-41f3-9542-b8e326490dfb');
 
@@ -87,7 +69,7 @@ class UsersControllerTest extends IntegrationTestCase
         $this->assertResponseSuccess();
 
         $users = TableRegistry::get('Users');
-        $query = $users->find()->where(['username' => $data['username']]);
+        $query = $users->find()->where(['username' => $newData['username']]);
         $this->assertEquals(1, $query->count());
     }
 
