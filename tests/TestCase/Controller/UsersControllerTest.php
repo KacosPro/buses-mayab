@@ -91,6 +91,32 @@ class UsersControllerTest extends IntegrationTestCase
         $this->assertEquals(1, $query->count());
     }
 
+    public function testAddWithDifferentPassword()
+    {
+        $this->get('/users/add');
+
+        $this->assertResponseOk();
+
+        $data = [
+        'id' => '133a5222-52b7-41f3-9542-b8e326490dfb',
+        'username' => 'perezcarlos192',
+        'password' => 'pollo19',
+        'confirmPassword' => 'pollo199',
+        'name' => 'Carlos',
+        'lastname' => 'Perez',
+        'email' => 'nasserperez192@gmail.com',
+        'created' => time(),
+        'modified' => time()
+        ];
+        $this->post('/users/add', $data);
+
+        $this->assertResponseSuccess();
+
+        $users = TableRegistry::get('Users');
+        $query = $users->find()->where(['username' => $data['username']]);
+        $this->assertEquals(0, $query->count());
+    }
+
     public function testSameMail()
     {
         $this->get('/users/add');

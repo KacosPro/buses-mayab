@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<checkstyle version="1.3.0">
+  <file name="View/AjaxView.php"/>
+  <file name="View/Helper/TWBPaginatorHelper.php">
+    <error line="0" severity="error" message="No summary was found for this file" source="phpDocumentor.file.PPC:ERR-50000"/>
+    <error line="6" severity="error" message="No summary for class \App\View\Helper\TWBPaginatorHelper" source="phpDocumentor.file.PPC:ERR-50005"/>
+    <error line="8" severity="error" message="No summary for property $_defaultConfig" source="phpDocumentor.file.PPC:ERR-50007"/>
+  </file>
+  <file name="View/Helper/TWBFormHelper.php">
+    <error line="0" severity="error" message="No summary was found for this file" source="phpDocumentor.file.PPC:ERR-50000"/>
+    <error line="6" severity="error" message="No summary for class \App\View\Helper\TWBFormHelper" source="phpDocumentor.file.PPC:ERR-50005"/>
+    <error line="8" severity="error" message="No summary for property $_defaultConfig" source="phpDocumentor.file.PPC:ERR-50007"/>
+  </file>
+  <file name="View/AppView.php"/>
+  <file name="Controller/PagesController.php"/>
+  <file name="Controller/ReservationsController.php"/>
+  <file name="Controller/RoutesController.php"/>
+  <file name="Controller/AppController.php"/>
+  <file name="Controller/UsersController.php"/>
+  <file name="Shell/ConsoleShell.php"/>
+  <file name="Console/Installer.php"/>
+  <file name="Model/Entity/Route.php"/>
+  <file name="Model/Entity/Reservation.php"/>
+  <file name="Model/Entity/User.php"/>
+  <file name="Model/Table/UsersTable.php"/>
+  <file name="Model/Table/ReservationsTable.php"/>
+  <file name="Model/Table/RoutesTable.php"/>
+</checkstyle>
